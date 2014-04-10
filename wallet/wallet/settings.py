@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'walletapp',
     'south',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
