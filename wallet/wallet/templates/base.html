@@ -10,27 +10,16 @@
         <meta name="MobileOptimized" content="320">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         
+
+        {% load staticfiles %}
+
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-flex.min.css">
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/font-awesome.min.css">
         
         <!--[if lt IE 9 ]>
             <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
-        
-        <!-- Place your Javascript here  -->
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
-        <script type="text/javascript">
-            Modernizr.load({
-              test: Modernizr.flexbox,
-              nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
-            });
-        </script>  
-
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
-        
-        
+          
         <style type="text/css">
             html, body {
                 height: 100%;
@@ -57,6 +46,9 @@
             .top-menu {
                 background: #1a1a1a;
             }
+            .repo-containerz {
+				padding-top:30px;border-bottom:1px solid #333;
+            }
         </style>
     </head>
     
@@ -71,21 +63,66 @@
                 </nav>
             </div>
 
-
-            
             <div class="ink-grid vertical-space">
-                <h1>heading</h1>
-                <p>And though of all men the moody captain of the Pequod was the least given to that sort of shallowest assumption; and though the only homage he ever exacted, was implicit, instantaneous obedience; though he required no man to remove the shoes from his feet ere stepping upon the quarter-deck; and though there were times when, owing to peculiar circumstances connected with events hereafter to be detailed, he addressed them in unusual terms, whether of condescension or IN TERROREM, or otherwise; yet even Captain Ahab was by no means unobservant of the paramount forms and usages of the sea.</p> 
+            	<div class="column-group horizontal-gutters">
+            		
+            		<div class="all-75">
+            			<div class="repo-containerz">
+	            			<div class="all-100">
+		            			<h1>mlimaloureiro/hello-world <span class="ink-badge blue">2</span></h1>
+
+		            			<p>And though of all men the moody captain of the Pequod was the least given to that sort of shallowest assumption</p>
+	            			</div>
+            			</div>
+            			<div class="repo-containerz">
+	            			<div class="all-100">
+		            			<h1>mlimaloureiro/SetMeUp <span class="ink-badge blue">2</span></h1>
+
+		            			<p>And though of all men the moody captain of the Pequod was the least given to that sort of shallowest assumption</p>
+	            			</div>
+            			</div>
+            		</div>
+            		<div class="all-25">
+            			<div class="all-100">
+            				<h2>Favourites</h2>
+            				ok
+            			</div>
+            			<div class="all-100">
+            				<h2>Featured</h2>
+            				teste
+
+            			</div>
+
+            		</div>
+            
+            	</div>
+
+                
             </div>
+
             <div class="push"></div>
         </div>
 
         <footer class="clearfix">
             <div class="ink-grid">
-                <p class="note">.</p>
+                <p class="note">CODEBITS PROJECT OMG OMG.</p>
             </div>
         </footer>
 
-    </body>
+        <!-- Place your Javascript here  -->
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
+        <script type="text/javascript">
+            Modernizr.load({
+              test: Modernizr.flexbox,
+              nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
+            });
+        </script>  
 
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+        <script type="text/javascript" src="{% static 'js/wallet.js' %}"></script>
+
+    </body>
 </html>
