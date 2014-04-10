@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.conf import global_settings
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
@@ -56,6 +57,7 @@ INSTALLED_APPS = (
     'walletapp',
     'south',
     'debug_toolbar',
+    'social_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,6 +71,10 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_DIRS = (
     os.path.join(SITE_ROOT, 'templates')
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
 )
 
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
@@ -97,3 +103,34 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.contrib.github.GithubBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+GITHUB_APP_ID = "8521a945e211daf2d521"
+GITHUB_API_SECRET = "644881d131e2b5b991ab5fd056524400371bb278"
+
+GITHUB_EXTENDED_PERMISSIONS = ['user:email']
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+#LOGIN_ERROR_URL = '/login-error/'
+#SOCIAL_AUTH_BACKEND_ERROR_URL = '/new-error-url/'
+
+SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details'
+)
