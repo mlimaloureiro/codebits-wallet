@@ -3,6 +3,11 @@
 	<title>Teste</title>
 </head>
 <body>
-	ola
+	ola {{request.user.username}}
+    {% if request.user.is_authenticated %}
+        <p><a href="{% url 'logout' %}">Logout</a></p>
+    {% else %}
+        <p><a href="{% url "socialauth_begin" "github" %}">Login with Github</a></p>
+    {% endif %}
 </body>
 </html>
