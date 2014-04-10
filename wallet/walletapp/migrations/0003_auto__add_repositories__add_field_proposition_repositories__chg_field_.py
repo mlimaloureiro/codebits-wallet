@@ -10,26 +10,34 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding model 'Repositories'
         db.create_table(u'walletapp_repositories', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('fullname', self.gf('django.db.models.fields.CharField')(max_length=400)),
-            ('url', self.gf('django.db.models.fields.CharField')(max_length=400)),
-            ('description', self.gf('django.db.models.fields.CharField')(max_length=2000)),
-            ('github_id', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            (u'id', self.gf('django.db.models.fields.AutoField')
+             (primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')
+             (max_length=200)),
+            ('fullname', self.gf('django.db.models.fields.CharField')
+             (max_length=400)),
+            ('url', self.gf('django.db.models.fields.CharField')
+             (max_length=400)),
+            ('description', self.gf('django.db.models.fields.CharField')
+             (max_length=2000)),
+            ('github_id', self.gf('django.db.models.fields.CharField')
+             (max_length=100)),
         ))
         db.send_create_signal(u'walletapp', ['Repositories'])
 
         # Adding field 'Proposition.repositories'
         db.add_column(u'walletapp_proposition', 'repositories',
-                      self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['walletapp.Repositories']),
+                      self.gf('django.db.models.fields.related.ForeignKey')(
+                          default=1, to=orm['walletapp.Repositories']),
                       keep_default=False)
 
-
         # Changing field 'Proposition.created_at'
-        db.alter_column(u'walletapp_proposition', 'created_at', self.gf('django.db.models.fields.DateTimeField')())
+        db.alter_column(u'walletapp_proposition', 'created_at',
+                        self.gf('django.db.models.fields.DateTimeField')())
 
         # Changing field 'Proposition.updated_at'
-        db.alter_column(u'walletapp_proposition', 'updated_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True))
+        db.alter_column(u'walletapp_proposition', 'updated_at',
+                        self.gf('django.db.models.fields.DateTimeField')(auto_now=True))
 
     def backwards(self, orm):
         # Deleting model 'Repositories'
@@ -38,12 +46,13 @@ class Migration(SchemaMigration):
         # Deleting field 'Proposition.repositories'
         db.delete_column(u'walletapp_proposition', 'repositories_id')
 
-
         # Changing field 'Proposition.created_at'
-        db.alter_column(u'walletapp_proposition', 'created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True))
+        db.alter_column(u'walletapp_proposition', 'created_at',
+                        self.gf('django.db.models.fields.DateTimeField')(auto_now=True))
 
         # Changing field 'Proposition.updated_at'
-        db.alter_column(u'walletapp_proposition', 'updated_at', self.gf('django.db.models.fields.DateTimeField')())
+        db.alter_column(u'walletapp_proposition', 'updated_at',
+                        self.gf('django.db.models.fields.DateTimeField')())
 
     models = {
         u'auth.group': {

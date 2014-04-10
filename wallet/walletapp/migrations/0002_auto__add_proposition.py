@@ -10,18 +10,19 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding model 'Proposition'
         db.create_table(u'walletapp_proposition', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            (u'id', self.gf('django.db.models.fields.AutoField')
+             (primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')
+             (to=orm['auth.User'])),
             ('updated_at', self.gf('django.db.models.fields.DateTimeField')()),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('created_at', self.gf('django.db.models.fields.DateTimeField')
+             (auto_now=True, blank=True)),
         ))
         db.send_create_signal(u'walletapp', ['Proposition'])
-
 
     def backwards(self, orm):
         # Deleting model 'Proposition'
         db.delete_table(u'walletapp_proposition')
-
 
     models = {
         u'auth.group': {
