@@ -6,6 +6,7 @@ django-social-auth==0.7.28
 httplib2==0.8
 oauth2==1.5.211
 python-openid==2.2.5
+requests==2.2.1
 simplejson==3.4.0
 six==1.6.1
 wsgiref==0.1.2
