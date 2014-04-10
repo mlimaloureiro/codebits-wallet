@@ -13,7 +13,7 @@ import datetime
 
 def index(request):
     opts = {}
-    t = loader.get_template('dash.html')
+    t = loader.get_template('base.html')
     return HttpResponse(t.render(RequestContext(request, opts)))
 
 
