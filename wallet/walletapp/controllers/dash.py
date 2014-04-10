@@ -10,4 +10,6 @@ import simplejson as json
 import datetime
 
 def index(request):
-	return HttpResponse('AI ESTA ELE CARALHO');
+	opts = {}
+	t = loader.get_template('dash.html')
+	return HttpResponse(t.render(RequestContext(request, opts)))
