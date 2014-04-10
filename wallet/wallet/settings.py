@@ -26,6 +26,18 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'hope',                         # Or path to database file if using sqlite3.
+        'USER': 'hope',                         # Not used with sqlite3.
+        'PASSWORD': 'in3sc',                    # Not used with sqlite3.
+        'HOST': 'bdmoth.dec.uc.pt',             # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+
 
 # Application definition
 
@@ -36,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'walletapp',
     'south',
 )
@@ -49,20 +62,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_DIRS = (
+    os.path.join(SITE_ROOT, 'templates')
+)
+
+MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
+ASSETS_URL = '/media/'
+
 ROOT_URLCONF = 'wallet.urls'
 
+
 WSGI_APPLICATION = 'wallet.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
