@@ -60,7 +60,7 @@
                     <ul class="menu horizontal black">
                         <li class="active"><a href="/">Codebits Wallet</a></li>
                         {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'repositories' %}">Find Opportunities</a></li>
+                            <li><a href="{% url 'dash_index' %}">Find Opportunities</a></li>
                             <li><a href="{% url 'logout' %}"> Logout </a></li>
                         {% else %}
                             <li><a href="{% url "socialauth_begin" "github" %}">Login</a></li>
@@ -69,8 +69,33 @@
                 </nav>
             </div>
 
-            {% block content %}{% endblock %}
+            <div class="ink-grid vertical-space">
+                <div class="column-group horizontal-gutters">
 
+                    {% block content %}{% endblock %}
+                    <div class="all-25">
+                        <div class="all-100" style="margin-bottom:40px;">
+                            <h2>Your offers</h2>
+                            ok
+                        </div>
+                        <div class="all-100">
+                            <h2>Your Repos</h2>
+                            <form class="ink-form">
+                                <div class="control-group append-button">
+                                    {% csrf_token %}
+                                    <input type="text" id="add_repository_url" style="width:80%" placeholder="Insert your repo url">
+                                    <button class="ink-button green" onclick="wallet.addRepository();return false;"><i class="icon-search"></i>+</button>
+                                </div>
+                            </form>
+
+                            <ul class="unstyled" id="my-repo-list">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="push"></div>
         </div>
 
         <footer class="clearfix">
