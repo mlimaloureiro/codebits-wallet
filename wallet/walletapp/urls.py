@@ -14,3 +14,8 @@ urlpatterns += patterns(
     url(r'^logout/$', logoutView, name="logout"),
     url(r'^profile/$', UserProfileView.as_view(), name="user_profile")
 )
+
+urlpatterns += patterns('walletapp.hooks',
+    url(r'^hooks/$', 'receive_hook' , name="receive_hook")
+)
+
