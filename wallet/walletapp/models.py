@@ -8,6 +8,8 @@ class Repositories(models.Model):
     url = models.CharField(max_length=400)
     description = models.CharField(max_length=2000)
     github_id = models.CharField(max_length=100)
+    hook_id = models.CharField(max_length=100)
+    hook_url = models.CharField(max_length=300)
     total_propositions = models.IntegerField(default = 0)
 
 class Proposition(models.Model):

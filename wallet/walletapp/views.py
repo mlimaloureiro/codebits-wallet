@@ -63,11 +63,11 @@ class RepositoriesView(JsonRequestResponseMixin, View):
     def post(self, request, *args, **kwargs):
         owner = request.POST['owner']
         repo = request.POST['repo']
-        #
-        return self.render_json_response(
-            {u"message": (u"ok")})
+        u = User.objects.get(id = request.user.id)
+        token = u.social_auth.filter(provider = 'github')[0].extra_data['access_token']
 
-
+        url = 'https://api.github.com/repos/' + owner + '/' + repo
+        return create_hook(url, token)
 
 
 class FavouritesView(JSONResponseMixin,View):

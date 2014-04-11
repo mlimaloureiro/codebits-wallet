@@ -5,7 +5,6 @@ function Repositories(endpoint) {
 	};
 
 	this.getMy = function() {
-		console.log("ola");
 		$.get('my_repositories/', this.render_my);
 	};
 
