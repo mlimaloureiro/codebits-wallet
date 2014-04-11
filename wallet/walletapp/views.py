@@ -31,7 +31,7 @@ class RepositoriesView(JSONResponseMixin, View):
 	json_dump_kwargs = {u"indent":2}
 	content_type = u"application/javascript"
 
-	def get(self, request, *args,**kwargs):		
+	def get(self, request, *args,**kwargs):
 		response = serialize('json', self.model.objects.all())
 		return self.render_json_response(json.loads(response))
 
@@ -40,8 +40,6 @@ class FavouritesView(JSONResponseMixin,View):
 	json_dump_kwargs = {u"indent":2}
 	content_type = u"application/javascript"
 
-	def get(self, request, *args,**kwargs):		
+	def get(self, request, *args,**kwargs):
 		response = serialize('json', self.model.objects.all())
 		return self.render_json_response(json.loads(response))
-
-

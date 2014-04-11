@@ -5,18 +5,26 @@
 	<div class="column-group horizontal-gutters">
 
 		<div class="all-75">
+            <div class="all-100">
+                <form class="ink-form">
+                    <div class="control-group append-button">
+                        <input type="text" id="highlight_input" style="width:90%" placeholder="Insert the issue url">
+                        <button class="ink-button" onclick="wallet.issues.search();return false;"><i class="icon-search"></i> Search</button>
+                    </div>
+                </form>
+            </div>
             <div id="issues"></div>
             <div class="all-100 align-center">
-                <button class="ink-button blue" onclick="javascript:wallet.getIssues();">Load more</button>
+                <button class="ink-button blue" style="margin-top:20px;" onclick="javascript:wallet.getIssues();">Load more</button>
             </div>
 		</div>
 		<div class="all-25">
 			<div class="all-100">
-				<h2>Cenas</h2>
+				<h2>Your offers</h2>
 				ok
 			</div>
 			<div class="all-100">
-				<h2>Lindas</h2>
+				<h2>Top offers</h2>
 				teste
 			</div>
 		</div>
@@ -28,18 +36,17 @@
 
 {% block template_scripts %}
 <script id="issue-line" type="text/html">
-      <div class="issue-containerz">
+      <div class="containerz">
           <div class="all-100">
-              <h1><a href='<%= repo.url %>' target='_blank'><%= repo.title %></a> </h1>
+              <h1><a href='<%= repo.html_url %>' target='_blank'><%= repo.title %></a> </h1>
               <h4> <%= repo.created_at %> </h4>
-              <p><%= repo.body %></p>
           </div>
       </div>
 </script>
 <script>
 $(document).ready(function() {
 	wallet.init();
-	wallet.getIssues(1);
+	wallet.getIssues();
 });
 </script>
 {% endblock %}

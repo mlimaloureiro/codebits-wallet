@@ -21,19 +21,33 @@ function Issues() {
 
 	this.get = function() {
 		this.currentPage++;
-		var pageString = '?page=' + this.currentPage + '&per_page=20';
+		var pageString = '?state=open&page=' + this.currentPage + '&per_page=20';
 		$.getJSON('https://api.github.com/repos/symfony/symfony/issues' + pageString, this.render);
 		console.log("Get from issues");
+	};
+
+	this.search = function() {
+
+		var input = $("#highlight_input").val();
+		var id = input.substring(input.lastIndexOf('/'));
+		$.getJSON('https://api.github.com/repos/symfony/symfony/issues' + id, this.render);
 	};
 
 	this.render = function(obj) {
 		console.log(obj);
 		var el = $('#issue-line').html();
 		var temp = '';
-		for (var r in obj) {
-			temp += _.template(el, {repo : obj[r]});
+
+		if(obj.length > 1) {
+			for (var r in obj) {
+				temp += _.template(el, {repo : obj[r]});
+			}
+			$('#issues').append(temp);
+		} else {
+			temp = _.template(el, {repo : obj});
+			$('#issues').html(temp);
 		}
-		$('#issues').append(temp);
+
 		console.log("Repositories Issues");
 		console.log("Rendering issues");
 	};
@@ -68,7 +82,7 @@ var wallet = {
 		this.repositories.get();
 	},
 
-	getIssues: function(page) {
+	getIssues: function() {
 		this.issues.get();
 	}
 };

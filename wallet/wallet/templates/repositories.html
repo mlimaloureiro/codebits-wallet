@@ -3,9 +3,9 @@
 {% block content %}
 <div class="ink-grid vertical-space">
 	<div class="column-group horizontal-gutters">
-		
+
 		<div class="all-75" id="repositories">
-			
+
 		</div>
 		<div class="all-25">
 			<div class="all-100">
@@ -18,7 +18,7 @@
 
 			</div>
 		</div>
-	</div>   
+	</div>
 </div>
 
 <div class="push"></div>
@@ -26,9 +26,9 @@
 
 {% block template_scripts %}
 <script id="repo-line" type="text/html">
-      <div class="repo-containerz">
+      <div class="containerz">
           <div class="all-100">
-              <h1><a href='/repositories/<%= repo["pk"] %>' ><%= repo['fields']['fullname'] %></a> 
+              <h1><a href='/repositories/<%= repo["pk"] %>' ><%= repo['fields']['fullname'] %></a>
                   <span class="ink-badge blue"><%= repo['fields']['total_propositions'] %></span>
               </h1>
               <p><%= repo['fields']['description'] %></p>
