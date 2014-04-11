@@ -6,7 +6,10 @@ function Repositories(endpoint) {
 
 	this.add = function(owner, repo, token) {
 		$.post('repositories/', {'owner': owner, 'repo': repo, 'csrfmiddlewaretoken': token}, function(data) {
-			console.log(data);
+			if(data.message == 'ok') {
+
+				alert("Done.");
+			}
 		},'json');
 	};
 
@@ -90,6 +93,7 @@ var wallet = {
 		var repo = input.substring(input.lastIndexOf('/') + 1);
 		var owner = input.split('/').slice(-2)[0];
 		var token = $('input[name=csrfmiddlewaretoken]').val();
+		$('#add_repository_url').val('');
 		this.repositories.add(owner, repo, token);
 	},
 
