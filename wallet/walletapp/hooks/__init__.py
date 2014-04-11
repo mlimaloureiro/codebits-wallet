@@ -55,11 +55,11 @@ def create_hook(repository='https://api.github.com/repos/andreesg/goncalves.me',
 
     # Check if the request was successfull
     if r.status_code != 201:
-        return HttpResponse(json.dumps({"success":False, "response":response}))
+        return False
     else:
         # SAVE HOOK ID
         hook_id = response["id"]
-        return HttpResponse(json.dumps({"success":True, "hook_id":hook_id, "hook_url":response["url"]}))
+        return {'hook_id':hook_id, 'hook_url' : response['url']}
 
 # Handle Github Webhooks
 def receive_hook(request):

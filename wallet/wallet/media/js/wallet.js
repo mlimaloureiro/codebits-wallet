@@ -9,7 +9,12 @@ function Repositories(endpoint) {
 	};
 
 	this.add = function(owner, repo, token) {
-		$.post(this.server + 'repositories/', {'owner': owner, 'repo': repo, 'csrfmiddlewaretoken': token},this.getMy,'json');
+		var that = this;
+		$.post(this.server + 'repositories/', {'owner': owner, 'repo': repo, 'csrfmiddlewaretoken': token},
+			function(data) {
+				that.getMy();
+				that.get();
+			},'json');
 	};
 
 	this.render = function(obj) {

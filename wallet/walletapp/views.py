@@ -70,7 +70,23 @@ class RepositoriesView(JsonRequestResponseMixin, View):
         token = u.social_auth.filter(provider = 'github')[0].extra_data['access_token']
 
         url = 'https://api.github.com/repos/' + owner + '/' + repo
-        return create_hook(url, token)
+
+        hook = create_hook(url, token)
+
+        if hook:
+            Repositories.objects.create(name = owner + '/' + repo ,
+                fullname = owner + '/' + repo,
+                url = 'http://github.com/' + owner + '/' + repo,
+                total_propositions = 0,
+                user_id = request.user.id,
+                hook_id = hook['hook_id'],
+                hook_url = hook['hook_url'])
+
+            return HttpResponse(json.dumps({"success":True}))
+        else:
+            return HttpResponse(json.dumps({"success":False}))
+
+
 
 
 class FavouritesView(JSONResponseMixin,View):
