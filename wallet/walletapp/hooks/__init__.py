@@ -21,11 +21,10 @@ def test_hook(repository='https://api.github.com/repos/andreesg/goncalves.me', h
 
     # Make the test push request
     r = requests.post(url, headers=headers)
-    response = r.json()
 
     # Check if succeded
     if r.status_code != 204:
-        return HttpResponse(json.dumps({"success":False, "response":response}))
+        return HttpResponse(json.dumps({"success":False}))
     else:
         return HttpResponse(json.dumps({"success":True}))
 
@@ -36,7 +35,7 @@ def create_hook(repository='https://api.github.com/repos/andreesg/goncalves.me',
         'name': 'web',
         'active': True,
         'config': {
-            'url': 'http://moth.dec.uc.pt/codebits_hook/',
+            'url': 'http://codingbooster.herokuapp.com/codebits_hook/',
             'content_type': 'json',
         },
         'events': [
