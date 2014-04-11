@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View, DetailView, UpdateView
-from braces.views import JSONResponseMixin
+from braces.views import JSONResponseMixin, JsonRequestResponseMixin
 from walletapp.models import *
 import simplejson as json
 from django.core.serializers import serialize
@@ -46,15 +46,24 @@ class UserProfileView(UpdateView):
         #Temp
         return super(UserForm, self).post(request, *args, **kwargs)
 
-
-class RepositoriesView(JSONResponseMixin, View):
+class RepositoriesView(JsonRequestResponseMixin, View):
     model = Repositories
     json_dump_kwargs = {u"indent":2}
     content_type = u"application/javascript"
 
-    def get(self, request, *args,**kwargs):
-       response = serialize('json', self.model.objects.all())
-       return self.render_json_response(json.loads(response))
+    def get(self, request, *args, **kwargs):
+        response = serialize('json', self.model.objects.all())
+        return self.render_json_response(json.loads(response))
+
+    def post(self, request, *args, **kwargs):
+        owner = request.POST['owner']
+        repo = request.POST['repo']
+        #
+        return self.render_json_response(
+            {u"message": (u"ok")})
+
+
+
 
 class FavouritesView(JSONResponseMixin,View):
     model = Favourites

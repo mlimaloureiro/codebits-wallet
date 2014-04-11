@@ -4,6 +4,12 @@ function Repositories(endpoint) {
 		$.getJSON('repositories/', this.render);
 	};
 
+	this.add = function(owner, repo, token) {
+		$.post('repositories/', {'owner': owner, 'repo': repo, 'csrfmiddlewaretoken': token}, function(data) {
+			console.log(data);
+		},'json');
+	};
+
 	this.render = function(obj) {
 		var el = $('#repo-line').html();
 		var temp = '';
@@ -47,9 +53,6 @@ function Issues() {
 			temp = _.template(el, {repo : obj});
 			$('#issues').html(temp);
 		}
-
-		console.log("Repositories Issues");
-		console.log("Rendering issues");
 	};
 }
 
@@ -80,6 +83,14 @@ var wallet = {
 
 	getRepositories: function() {
 		this.repositories.get();
+	},
+
+	addRepository: function() {
+		var input = $('#add_repository_url').val();
+		var repo = input.substring(input.lastIndexOf('/') + 1);
+		var owner = input.split('/').slice(-2)[0];
+		var token = $('input[name=csrfmiddlewaretoken]').val();
+		this.repositories.add(owner, repo, token);
 	},
 
 	getIssues: function() {
