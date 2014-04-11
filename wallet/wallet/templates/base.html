@@ -13,8 +13,8 @@
 
         {% load staticfiles %}
 
-        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-flex.min.css">
-        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="//cdn.ink.sapo.pt/3.0.0/css/ink-flex.min.css">
+        <link rel="stylesheet" type="text/css" href="//cdn.ink.sapo.pt/3.0.0/css/font-awesome.min.css">
 
         <!--[if lt IE 9 ]>
             <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -70,6 +70,7 @@
             </div>
 
             <div class="ink-grid vertical-space">
+
                 <div class="column-group horizontal-gutters">
 
                     {% block content %}{% endblock %}
@@ -77,9 +78,9 @@
                         <div class="all-100" style="margin-bottom:40px;">
                             <h2>Latest payed</h2>
                             <ul class="unstyled" id="my-offers-list">
-                                <li>5€ - mlimaloureiro/iJava #1</li>
-                                <li>2€ - mlimaloureiro/iJava #432</li>
-                                <li>1€ - mlimaloureiro/iJava #434</li>
+                                <li>5.00€ - mlimaloureiro/iJava #1</li>
+                                <li>2.31€ - mlimaloureiro/iJava #432</li>
+                                <li>1.7€ - mlimaloureiro/iJava #434</li>
                             </ul>
                         </div>
                         <div class="all-100" style="margin-bottom:40px;">
@@ -117,17 +118,17 @@
         </footer>
 
         <!-- Place your Javascript here  -->
-        <script src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
+        <script src="//cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
         <script>
             Modernizr.load({
               test: Modernizr.flexbox,
-              nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
+              nope : '//cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
             });
         </script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-        <script src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
-        <script src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
-        <script src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
+        <script src="//cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
+        <script src="//cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
+        <script src="//cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
 
         <script src="{% static 'js/wallet.js' %}"></script>

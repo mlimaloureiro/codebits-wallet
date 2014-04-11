@@ -45,7 +45,7 @@ function Issues() {
 	this.get = function(fullname) {
 		this.currentPage++;
 		var pageString = '?state=open&page=' + this.currentPage + '&per_page=20';
-		$.getJSON('https://api.github.com/repos/' + fullname + '/issues' + pageString, this.render);
+		$.get('https://api.github.com/repos/' + fullname + '/issues' + pageString, this.render);
 		console.log("Get from issues");
 	};
 
@@ -61,7 +61,7 @@ function Issues() {
 		var el = $('#issue-line').html();
 		var temp = '';
 
-		if(obj.length > 1) {
+		if(obj.length >= 1) {
 			for (var r in obj) {
 				temp += _.template(el, {repo : obj[r]});
 			}
