@@ -18,11 +18,11 @@ def index(request):
     return HttpResponse(t.render(RequestContext(request, opts)))
 
 def get_repositories(request):
-	try: 
-		req = Repositories.objects.all()
-		return HttpResponse(json.dumps(req), content_type="json")
-	except:
-		return HttpResponse("error")
+    try:
+        req = Repositories.objects.all()
+        return HttpResponse(json.dumps(req), content_type="json")
+    except:
+        return HttpResponse("error")
 
 def get_issues(request):
     req = requests.get('https://api.github.com/repos/symfony/symfony/issues')
