@@ -35,7 +35,7 @@ def create_hook(repository='https://api.github.com/repos/andreesg/goncalves.me',
         'name': 'web',
         'active': True,
         'config': {
-            'url': 'http://codingbooster.herokuapp.com/codebits_hook/',
+            'url': 'http://codingbooster.herokuapp.com/hooks/',
             'content_type': 'json',
         },
         'events': [
