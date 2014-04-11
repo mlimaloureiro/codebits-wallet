@@ -61,7 +61,7 @@ function Issues() {
 		var el = $('#issue-line').html();
 		var temp = '';
 
-		if(obj.length > 1) {
+		if(obj.length >= 1) {
 			for (var r in obj) {
 				temp += _.template(el, {repo : obj[r]});
 			}
