@@ -14,7 +14,6 @@ import requests
 import datetime
 # Create your views here.
 
-
 def index(request):
     opts = {}
     t = loader.get_template('repositories.html')
@@ -32,4 +31,10 @@ class RepositoriesView(JSONResponseMixin, View):
 	def get(self, request, *args,**kwargs):		
 		response = serialize('json', self.model.objects.all())
 		return self.render_json_response(json.loads(response))
+
+class FavouritesView(JSONResponseMixin,View):
+	model = Favourites
+	json_dump_kwargs = {u"indent":2}
+	content_type = u"application/javascript"
+
 

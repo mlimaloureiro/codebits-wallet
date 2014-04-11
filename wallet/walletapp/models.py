@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Repositories(models.Model):
     name = models.CharField(max_length=200)
     fullname = models.CharField(max_length=400)
@@ -12,11 +11,12 @@ class Repositories(models.Model):
 
 class Proposition(models.Model):
     user = models.ForeignKey(User)
-    repositories = models.ForeignKey(Repositories)
+    repository = models.ForeignKey(Repositories)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField()
 
 class Favourites(models.Model):
     user = models.ForeignKey(User)
+    repository = models.ForeignKey(Repositories)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField()
