@@ -54,7 +54,7 @@ class RepositoriesView(JSONResponseMixin, View):
 
     def get(self, request, *args,**kwargs):
        response = serialize('json', self.model.objects.all())
-        return self.render_json_response(json.loads(response))
+       return self.render_json_response(json.loads(response))
 
 class FavouritesView(JSONResponseMixin,View):
     model = Favourites
