@@ -4,13 +4,13 @@ function Repositories(endpoint) {
 		$.getJSON('repositories/', this.render);
 	};
 
-	this.add = function(owner, repo, token) {
-		$.post('repositories/', {'owner': owner, 'repo': repo, 'csrfmiddlewaretoken': token}, function(data) {
-			if(data.message == 'ok') {
+	this.getMy = function() {
+		console.log("ola");
+		$.get('my_repositories/', this.render_my);
+	};
 
-				alert("Done.");
-			}
-		},'json');
+	this.add = function(owner, repo, token) {
+		$.post('repositories/', {'owner': owner, 'repo': repo, 'csrfmiddlewaretoken': token},this.getMy,'json');
 	};
 
 	this.render = function(obj) {
@@ -21,6 +21,16 @@ function Repositories(endpoint) {
 		}
 		$('#repositories').html(temp);
 		console.log("Repositories Rendered");
+	};
+
+	this.render_my = function(obj) {
+		obj = JSON.parse(obj);
+		console.log(obj);
+		$el = $('#my-repo-list');
+		$el.html('');
+		for (var r in obj) {
+			$el.append('<li>' + obj[r]['fields']['fullname'] + '</li>');
+		}
 	};
 }
 

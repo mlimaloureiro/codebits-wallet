@@ -22,7 +22,7 @@
                     </div>
                 </form>
 
-                <ul class="unstyled" id="my-repos-list">
+                <ul class="unstyled" id="my-repo-list">
 
                 </ul>
 			</div>
@@ -48,6 +48,7 @@
 $(document).ready(function() {
       wallet.init();
       wallet.getRepositories();
+      wallet.repositories.getMy();
 });
 </script>
 {% endblock %}

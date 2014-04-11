@@ -4,6 +4,7 @@ from .views import *
 urlpatterns = patterns('walletapp.views',
     url(r'^$', 'index' , name="dash_index"),
     url(r'^repository/(?P<ident>\d+)$', 'repository', name="issues"),
+    url(r'^my_repositories/$', 'myRepositories', name="my_repositories"),
     url(r'^repositories/$', RepositoriesView.as_view(), name="repositories"),
 )
 
