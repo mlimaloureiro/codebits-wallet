@@ -1,5 +1,5 @@
 function Repositories(endpoint) {
-	this.server = window.location.href;
+	this.server = window.location.origin + '/';
 	this.get = function() {
 		$.getJSON(this.server + 'repositories/', this.render);
 	};
@@ -30,11 +30,14 @@ function Repositories(endpoint) {
 	this.render_my = function(obj) {
 		obj = JSON.parse(obj);
 		console.log(obj);
-		$el = $('#my-repo-list');
-		$el.html('');
-		for (var r in obj) {
-			$el.append('<li>' + obj[r]['fields']['fullname'] + '</li>');
+		if(obj) {
+			$el = $('#my-repo-list');
+			$el.html('');
+			for (var r in obj) {
+				$el.append('<li>' + obj[r]['fields']['fullname'] + '</li>');
+			}
 		}
+
 	};
 }
 
