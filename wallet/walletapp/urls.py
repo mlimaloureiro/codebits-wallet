@@ -10,5 +10,6 @@ urlpatterns = patterns('walletapp.views',
 urlpatterns += patterns(
     'walletapp.controllers',
     url(r'^auth/', include('social_auth.urls')),
-    url(r'^logout/$', logoutView, name="logout")
+    url(r'^logout/$', logoutView, name="logout"),
+    url(r'^profile/$', UserProfileView.as_view(), name="user_profile")
 )
