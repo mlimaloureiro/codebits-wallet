@@ -11,7 +11,6 @@ import simplejson as json
 import requests
 import datetime
 
-
 def index(request):
     opts = {}
     t = loader.get_template('base.html')
