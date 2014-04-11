@@ -9,8 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import View, DetailView, UpdateView
 from braces.views import JSONResponseMixin, JsonRequestResponseMixin
 from walletapp.models import *
-import simplejson as json
 from django.core.serializers import serialize
+from walletapp.hooks import *
+import simplejson as json
 import requests
 import datetime
 
