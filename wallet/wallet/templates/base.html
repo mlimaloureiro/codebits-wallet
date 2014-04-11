@@ -63,31 +63,8 @@
                 </nav>
             </div>
 
-            <div class="ink-grid vertical-space">
-            	<div class="column-group horizontal-gutters">
-            		
-            		<div class="all-75" id="repositories">
-            			
-            		</div>
-            		<div class="all-25">
-            			<div class="all-100">
-            				<h2>Favourites</h2>
-            				ok
-            			</div>
-            			<div class="all-100">
-            				<h2>Featured</h2>
-            				teste
-
-            			</div>
-
-            		</div>
+            {% block content %}{% endblock %}
             
-            	</div>
-
-                
-            </div>
-
-            <div class="push"></div>
         </div>
 
         <footer class="clearfix">
@@ -111,16 +88,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
         
         <script src="{% static 'js/wallet.js' %}"></script>
-
-        <script id="repo-line" type="text/html">
-            <div class="repo-containerz">
-                <div class="all-100">
-                    <h1><%= repo['fullname'] %> 
-                        <span class="ink-badge blue"><%= repo['total_propositions'] %></span>
-                    </h1>
-                    <p><%= repo['description'] %></p>
-                </div>
-            </div>
-        </script>
+        {% block template_scripts %}
+        
+        {% endblock %}
     </body>
 </html>

@@ -8,7 +8,7 @@ function Repositories(endpoint) {
 		var el = $('#repo-line').html(); 
 		var temp = '';
 		for (var r in obj) {
-			temp += _.template(el, {repo : obj[r]['fields']});
+			temp += _.template(el, {repo : obj[r]});
 		}
 		$('#repositories').html(temp);
 		console.log("Repositories Rendered");
@@ -48,7 +48,6 @@ var wallet = {
 
 	init: function() {
 		console.log("wallet app started");
-		this.repositories.get();
 	},
 
 	getRepositories: function() {
@@ -58,4 +57,5 @@ var wallet = {
 
 $(document).ready(function() {
 	wallet.init();
+	wallet.getRepositories();
 });

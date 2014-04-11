@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="ink-grid vertical-space">
+	<div class="column-group horizontal-gutters">
+		
+		<div class="all-75" id="repositories">
+			
+		</div>
+		<div class="all-25">
+			<div class="all-100">
+				<h2>Favourites</h2>
+				ok
+			</div>
+			<div class="all-100">
+				<h2>Featured</h2>
+				teste
+
+			</div>
+		</div>
+	</div>   
+</div>
+
+<div class="push"></div>
+{% endblock %}
+
+{% block template_scripts %}
+<script id="repo-line" type="text/html">
+      <div class="repo-containerz">
+          <div class="all-100">
+              <h1><a href='/repositories/<%= repo["pk"] %>' ><%= repo['fields']['fullname'] %></a> 
+                  <span class="ink-badge blue"><%= repo['fields']['total_propositions'] %></span>
+              </h1>
+              <p><%= repo['fields']['description'] %></p>
+          </div>
+      </div>
+</script>
+{% endblock %}

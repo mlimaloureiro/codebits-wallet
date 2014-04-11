@@ -17,7 +17,7 @@ import datetime
 
 def index(request):
     opts = {}
-    t = loader.get_template('base.html')
+    t = loader.get_template('repositories.html')
     return HttpResponse(t.render(RequestContext(request, opts)))
 
 def logoutView(request):
