@@ -18,6 +18,7 @@ class Proposition(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
     issue_id = models.CharField(max_length=300)
+    value = models.IntegerField(default=500)
 
 class Favourites(models.Model):
     user = models.ForeignKey(User)

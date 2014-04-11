@@ -17,6 +17,28 @@
       <button class="ink-button blue" style="margin-top:20px;" onclick="javascript:wallet.getIssues();">Load more</button>
   </div>
 </div>
+
+<div class="ink-shade fade">
+    <div id="addProposition" class="ink-modal fade" data-trigger=".show-proposition-modal" data-width="80%" data-height="80%">
+        <div class="modal-header">
+            <button class="modal-close ink-dismiss"></button>
+            <h2>This is the modal header</h2>
+        </div>
+        <div class="modal-body" id="modalContent">
+            <h3>This is the modal content</h3>
+            <figure class="ink-image">
+                <img src="http://lorempixel.com/1200/675/sports/1" alt="" class="ink-image">
+            </figure>
+        </div>
+        <div class="modal-footer">
+            <div class="push-right">
+                <!-- Anything with the ink-dismiss class will close the modal -->
+                <button class="ink-button caution ink-dismiss">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block template_scripts %}
@@ -25,6 +47,7 @@
           <div class="all-100">
               <h1><a href='<%= repo.html_url %>' target='_blank'><%= repo.title %></a> </h1>
               <h4> <%= repo.created_at %> </h4>
+              <a class="show-proposition-modal">Make Offer</a>
           </div>
       </div>
 </script>

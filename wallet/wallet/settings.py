@@ -68,7 +68,6 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "wallet/media"),
-    os.path.join(BASE_DIR, 'static'),
 )
 
 TEMPLATE_DIRS = (
