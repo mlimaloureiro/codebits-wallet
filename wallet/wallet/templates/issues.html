@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="ink-grid vertical-space">
+	<div class="column-group horizontal-gutters">
+
+		<div class="all-75">
+            <div id="issues"></div>
+            <div class="all-100 align-center">
+                <button class="ink-button blue" onclick="javascript:wallet.getIssues();">Load more</button>
+            </div>
+		</div>
+		<div class="all-25">
+			<div class="all-100">
+				<h2>Cenas</h2>
+				ok
+			</div>
+			<div class="all-100">
+				<h2>Lindas</h2>
+				teste
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="push"></div>
+{% endblock %}
+
+{% block template_scripts %}
+<script id="issue-line" type="text/html">
+      <div class="issue-containerz">
+          <div class="all-100">
+              <h1><a href='<%= repo.url %>' target='_blank'><%= repo.title %></a> </h1>
+              <h4> <%= repo.created_at %> </h4>
+              <p><%= repo.body %></p>
+          </div>
+      </div>
+</script>
+<script>
+$(document).ready(function() {
+	wallet.init();
+	wallet.getIssues(1);
+});
+</script>
+{% endblock %}

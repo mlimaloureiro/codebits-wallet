@@ -5,7 +5,7 @@ function Repositories(endpoint) {
 	};
 
 	this.render = function(obj) {
-		var el = $('#repo-line').html(); 
+		var el = $('#repo-line').html();
 		var temp = '';
 		for (var r in obj) {
 			temp += _.template(el, {repo : obj[r]});
@@ -17,11 +17,24 @@ function Repositories(endpoint) {
 
 function Issues() {
 
+	this.currentPage = 0;
+
 	this.get = function() {
+		this.currentPage++;
+		var pageString = '?page=' + this.currentPage + '&per_page=20';
+		$.getJSON('https://api.github.com/repos/symfony/symfony/issues' + pageString, this.render);
 		console.log("Get from issues");
 	};
 
-	this.render = function() {
+	this.render = function(obj) {
+		console.log(obj);
+		var el = $('#issue-line').html();
+		var temp = '';
+		for (var r in obj) {
+			temp += _.template(el, {repo : obj[r]});
+		}
+		$('#issues').append(temp);
+		console.log("Repositories Issues");
 		console.log("Rendering issues");
 	};
 }
@@ -47,15 +60,17 @@ var wallet = {
 	issues: new Issues(),
 
 	init: function() {
+
 		console.log("wallet app started");
 	},
 
 	getRepositories: function() {
 		this.repositories.get();
 	},
+
+	getIssues: function(page) {
+		this.issues.get();
+	}
 };
 
-$(document).ready(function() {
-	wallet.init();
-	wallet.getRepositories();
-});
+
