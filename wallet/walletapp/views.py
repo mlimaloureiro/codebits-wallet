@@ -24,14 +24,16 @@ def index(request):
     return HttpResponse(t.render(RequestContext(request, {})))
 
 def repository(request, ident):
+    obj = Repositories.objects.get(id = ident)
     t = loader.get_template('issues.html')
-    return HttpResponse(t.render(RequestContext(request, {ident:ident})))
+    return HttpResponse(t.render(RequestContext(request, {'repo':obj})))
 
 def myRepositories(request):
     myRepos = serialize('json',Repositories.objects.filter(
         user = User.objects.get(id = int(request.user.id))))
 
     return HttpResponse(json.dumps(myRepos), content_type="json")
+
 
 def logoutView(request):
     logout(request)

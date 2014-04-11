@@ -1,15 +1,15 @@
 function Repositories(endpoint) {
-
+	this.server = 'http://localhost:8000/';
 	this.get = function() {
-		$.getJSON('repositories/', this.render);
+		$.getJSON(this.server + 'repositories/', this.render);
 	};
 
 	this.getMy = function() {
-		$.get('my_repositories/', this.render_my);
+		$.get(this.server + 'my_repositories/', this.render_my);
 	};
 
 	this.add = function(owner, repo, token) {
-		$.post('repositories/', {'owner': owner, 'repo': repo, 'csrfmiddlewaretoken': token},this.getMy,'json');
+		$.post(this.server + 'repositories/', {'owner': owner, 'repo': repo, 'csrfmiddlewaretoken': token},this.getMy,'json');
 	};
 
 	this.render = function(obj) {
@@ -37,18 +37,18 @@ function Issues() {
 
 	this.currentPage = 0;
 
-	this.get = function() {
+	this.get = function(fullname) {
 		this.currentPage++;
 		var pageString = '?state=open&page=' + this.currentPage + '&per_page=20';
-		$.getJSON('https://api.github.com/repos/symfony/symfony/issues' + pageString, this.render);
+		$.getJSON('https://api.github.com/repos/' + fullname + '/issues' + pageString, this.render);
 		console.log("Get from issues");
 	};
 
-	this.search = function() {
+	this.search = function(fullname) {
 
 		var input = $("#highlight_input").val();
 		var id = input.substring(input.lastIndexOf('/'));
-		$.getJSON('https://api.github.com/repos/symfony/symfony/issues' + id, this.render);
+		$.getJSON('https://api.github.com/repos/' + fullname + '/issues' + id, this.render);
 	};
 
 	this.render = function(obj) {
@@ -107,7 +107,7 @@ var wallet = {
 	},
 
 	getIssues: function() {
-		this.issues.get();
+		this.issues.get(this.repoFullName);
 	}
 };
 

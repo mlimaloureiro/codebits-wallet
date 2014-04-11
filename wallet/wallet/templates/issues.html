@@ -9,7 +9,7 @@
                 <form class="ink-form">
                     <div class="control-group append-button">
                         <input type="text" id="highlight_input" style="width:90%" placeholder="Insert the issue url">
-                        <button class="ink-button" onclick="wallet.issues.search();return false;"><i class="icon-search"></i> Search</button>
+                        <button class="ink-button" onclick="wallet.issues.search(wallet['repoFullName']);return false;"><i class="icon-search"></i> Search</button>
                     </div>
                 </form>
             </div>
@@ -46,7 +46,10 @@
 <script>
 $(document).ready(function() {
 	wallet.init();
+  wallet['repoFullName'] = '{{ repo.fullname }}';
 	wallet.getIssues();
+  wallet.repositories.getMy();
+
 });
 </script>
 {% endblock %}
