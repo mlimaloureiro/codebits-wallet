@@ -16,7 +16,8 @@ class Proposition(models.Model):
     user = models.ForeignKey(User)
     repository = models.ForeignKey(Repositories)
     updated_at = models.DateTimeField(auto_now=True)
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    issue_id = models.CharField(max_length=300)
 
 class Favourites(models.Model):
     user = models.ForeignKey(User)

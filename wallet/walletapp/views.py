@@ -6,8 +6,8 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
-from django.views.generic import View, DetailView, UpdateView
-from braces.views import JSONResponseMixin, JsonRequestResponseMixin
+from django.views.generic import View, DetailView, UpdateView, CreateView
+from braces.views import JSONResponseMixin, JsonRequestResponseMixin, LoginRequiredMixin
 from walletapp.models import *
 from django.core.serializers import serialize
 from walletapp.hooks import *
@@ -98,3 +98,6 @@ class FavouritesView(JSONResponseMixin,View):
         response = serialize('json', self.model.objects.all())
         return self.render_json_response(json.loads(response))
 
+
+class CreatePropositionView(LoginRequiredMixin, CreateView):
+    model = Proposition
