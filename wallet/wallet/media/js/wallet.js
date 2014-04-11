@@ -1,5 +1,5 @@
 function Repositories(endpoint) {
-	this.server = 'http://localhost:8000/';
+	this.server = window.location.href;
 	this.get = function() {
 		$.getJSON(this.server + 'repositories/', this.render);
 	};
