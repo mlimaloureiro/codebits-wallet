@@ -12,3 +12,8 @@ urlpatterns += patterns(
     url(r'^auth/', include('social_auth.urls')),
     url(r'^logout/$', logoutView, name="logout")
 )
+
+urlpatterns += patterns('walletapp.hooks',
+    url(r'^hooks/$', 'receive_hook' , name="receive_hook")
+)
+
