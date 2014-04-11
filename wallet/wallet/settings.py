@@ -21,24 +21,14 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SECRET_KEY = '$iqlzg+%m^k3ma=*=a8f6b4hx=%&njohv5#0#3^h##-tk2tdct'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-TEMPLATE_DEBUG = True
-ALLOWED_HOSTS = []
+TEMPLATE_DEBUG = DEBUG
+ALLOWED_HOSTS = ["*"]
 
-DATABASES = {
-    'default': {
-        # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or
-        # 'oracle'.
-        'ENGINE': 'django.db.backends.mysql',
-        # Or path to database file if using sqlite3.
-        'NAME': 'codebits-wallet',
-        'USER': 'root',                         # Not used with sqlite3.
-        'PASSWORD': 'root',                    # Not used with sqlite3.
-        # Set to empty string for localhost. Not used with sqlite3.
-        'HOST': 'localhost',
-        # Set to empty string for default. Not used with sqlite3.
-        'PORT': '',
-    }
-}
+import dj_database_url
+DATABASES = { 'default' : dj_database_url.config()}
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Application definition
 
@@ -78,6 +68,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "wallet/media"),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 TEMPLATE_DIRS = (
@@ -88,7 +79,11 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
 )
 
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
+
 ROOT_URLCONF = 'wallet.urls'
 WSGI_APPLICATION = 'wallet.wsgi.application'
 
