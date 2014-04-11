@@ -66,21 +66,8 @@
             <div class="ink-grid vertical-space">
             	<div class="column-group horizontal-gutters">
             		
-            		<div class="all-75">
-            			<div class="repo-containerz">
-	            			<div class="all-100">
-		            			<h1>mlimaloureiro/hello-world <span class="ink-badge blue">2</span></h1>
-
-		            			<p>And though of all men the moody captain of the Pequod was the least given to that sort of shallowest assumption</p>
-	            			</div>
-            			</div>
-            			<div class="repo-containerz">
-	            			<div class="all-100">
-		            			<h1>mlimaloureiro/SetMeUp <span class="ink-badge blue">2</span></h1>
-
-		            			<p>And though of all men the moody captain of the Pequod was the least given to that sort of shallowest assumption</p>
-	            			</div>
-            			</div>
+            		<div class="all-75" id="repositories">
+            			
             		</div>
             		<div class="all-25">
             			<div class="all-100">
@@ -110,19 +97,30 @@
         </footer>
 
         <!-- Place your Javascript here  -->
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
-        <script type="text/javascript">
+        <script src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
+        <script>
             Modernizr.load({
               test: Modernizr.flexbox,
               nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
             });
         </script>  
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
+        <script src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
+        <script src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+        
+        <script src="{% static 'js/wallet.js' %}"></script>
 
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-        <script type="text/javascript" src="{% static 'js/wallet.js' %}"></script>
-
+        <script id="repo-line" type="text/html">
+            <div class="repo-containerz">
+                <div class="all-100">
+                    <h1><%= repo['fullname'] %> 
+                        <span class="ink-badge blue"><%= repo['total_propositions'] %></span>
+                    </h1>
+                    <p><%= repo['description'] %></p>
+                </div>
+            </div>
+        </script>
     </body>
 </html>

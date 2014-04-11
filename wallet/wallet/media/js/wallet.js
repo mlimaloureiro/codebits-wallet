@@ -1,19 +1,21 @@
 function Repositories(endpoint) {
 
-	this.server = endpoint;
-
 	this.get = function() {
-		console.log("Get from endpoint");
+		$.getJSON('repositories/', this.render);
 	};
 
 	this.render = function(obj) {
-		console.log("Rendering repositories");
+		var el = $('#repo-line').html(); 
+		var temp = '';
+		for (var r in obj) {
+			temp += _.template(el, {repo : obj[r]['fields']});
+		}
+		$('#repositories').html(temp);
+		console.log("Repositories Rendered");
 	};
-
 }
 
-function Issues(endpoint) {
-	this.server = endpoint;
+function Issues() {
 
 	this.get = function() {
 		console.log("Get from issues");
@@ -24,8 +26,7 @@ function Issues(endpoint) {
 	};
 }
 
-function Propositions(endpoint) {
-	this.server = endpoint;
+function Propositions() {
 
 	this.get = function() {
 		console.log("Get from propositions");
@@ -42,15 +43,19 @@ function Propositions(endpoint) {
 
 var wallet = {
 
-	endpoint: 'http://localhost:8000', 
-	repositories: new Repositories(this.endpoint),
-	issues: new Issues(this.endpoint),
+	repositories: new Repositories(),
+	issues: new Issues(),
 
-	initEvents: function() {
+	init: function() {
 		console.log("wallet app started");
 		this.repositories.get();
-	}
+	},
 
+	getRepositories: function() {
+		this.repositories.get();
+	},
 };
 
-wallet.init();
+$(document).ready(function() {
+	wallet.init();
+});
