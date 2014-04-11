@@ -21,7 +21,7 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SECRET_KEY = '$iqlzg+%m^k3ma=*=a8f6b4hx=%&njohv5#0#3^h##-tk2tdct'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ["*"]
 
 import dj_database_url
@@ -68,6 +68,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "wallet/media"),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 TEMPLATE_DIRS = (
