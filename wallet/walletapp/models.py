@@ -15,3 +15,8 @@ class Proposition(models.Model):
     repositories = models.ForeignKey(Repositories)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField()
+
+class Favourites(models.Model):
+    user = models.ForeignKey(User)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField()
