@@ -125,8 +125,8 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
                 "currency": "EUR",
                 "items": [],
             },
-            "url_confirm": reverse('success_proposition'),
-            "url_cancel": reverse('failed_proposition')
+            "url_confirm": "https://codingbooster.herokuapp.com" + reverse('success_proposition'),
+            "url_cancel": "https://codingbooster.herokuapp.com" + reverse('failed_proposition')
         }
         url = "https://services.wallet.codebits.eu/api/v2/checkout"
         headers = {
