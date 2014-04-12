@@ -144,7 +144,7 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
 class FailedPropositionView(LoginRequiredMixin, RedirectView):
 
     def get(self, request, *args, **kwargs):
-        op_id = request.POST.get("checkout_id")
+        op_id = request.GET.get("checkout_id")
         prop = Proposition.objects.get(operation_id=op_id)
         prop.status = FAILED
         prop.save()
@@ -154,7 +154,7 @@ class FailedPropositionView(LoginRequiredMixin, RedirectView):
 class SuccessPropositionView(LoginRequiredMixin, RedirectView):
 
     def get(self, request, *args, **kwargs):
-        op_id = request.POST.get("checkout_id")
+        op_id = request.GET.get("checkout_id")
         prop = Proposition.objects.get(operation_id=op_id)
         prop.status = DONE
         prop.save()
