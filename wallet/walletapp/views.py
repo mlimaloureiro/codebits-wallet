@@ -133,7 +133,8 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
             "Authorization": "WalletPT "+settings.WALLET_MER_ID,
             'content-type': 'application/json'
         }
-        response = requests.post(url, data=json.dumps(data), headers=headers)
+        JSONNN = json.dumps(data)
+        response = requests.post(url, data=JSONNN, headers=headers)
         return HttpResponseRedirect(response.json()["url_redirect"])
 
 
