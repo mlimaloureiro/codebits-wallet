@@ -107,7 +107,7 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
         prop = Proposition(**form.cleaned_data)
         prop.user = self.request.user
         prop.save()
-        user = request.user
+        user = self.request.user
 
         data = {
             "payment": {
