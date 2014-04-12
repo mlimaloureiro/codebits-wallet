@@ -123,7 +123,7 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
         }
         url = "https://wallet.codebits.pt/api/v2/checkout"
         headers = {"Authorization": "WalletPT "+settings.WALLET_MER_ID}
-        response = requests.post(url, params=json.dumps(data), headers=headers)
+        response = requests.post(url, data=json.dumps(data), headers=headers)
         return HttpResponseRedirect(json.loads(response.text)["url_redirect"])
 
 
