@@ -38,6 +38,7 @@ class Proposition(models.Model):
     value = models.IntegerField(default=500)
     status = models.IntegerField(choices=PROP_STATUSES, default=WAITING)
     expires = models.DateTimeField(null=True, blank=True)
+    operation_id = models.CharField(max_length=500, null=True)
 
 
 class Favourites(models.Model):

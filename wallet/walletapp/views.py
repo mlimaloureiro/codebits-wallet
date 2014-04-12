@@ -135,18 +135,27 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
         }
         payload = json.dumps(data)
         response = requests.post(url, data=payload, headers=headers)
-        return HttpResponseRedirect(response.json()["url_redirect"])
+        r_json = response.json()
+        prop.operation_id = r_json['id']
+        prop.save()
+        return HttpResponseRedirect(r_json["url_redirect"])
 
 
 class FailedPropositionView(LoginRequiredMixin, RedirectView):
 
     def get(request, *args, **kwargs):
-        messages.error(request, "Unable to transfer funds")
+        op_id = request.GET.get("operation_id")
+        prop = Proposition.objects.get(operation_id=op_id)
+        prop.status = FAILED
+        prop.save()
         return HttpResponseRedirect(reverse_lazy('dash_index'))
 
 
 class SuccessPropositionView(LoginRequiredMixin, RedirectView):
 
     def get(request, *args, **kwargs):
-        messages.success(request, "Proposition created with success")
+        op_id = request.GET.get("operation_id")
+        prop = Proposition.objects.get(operation_id=op_id)
+        prop.status = DONE
+        prop.save()
         return HttpResponseRedirect(reverse_lazy('dash_index'))
