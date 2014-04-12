@@ -69,7 +69,7 @@ def receive_hook(request):
         event = request.META['HTTP_X_GITHUB_EVENT']
         if event == "pull_request":
             print "pull_request received"
-            handle_pull_request(request.body)
+            r = requests.post("http://moth.dec.uc.pt/codebits_hook/", data=json.dumps({"action":"wallet"}))
     except Exception as e:
         return HttpResponse(json.dumps({"success":False, "error_msg": "Github header not found."}))
     else:
