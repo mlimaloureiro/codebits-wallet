@@ -103,7 +103,7 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
     model = Proposition
     form_class = PropositionForm
 
-    def form_valid(form):
+    def form_valid(self, form):
         prop = Proposition(**form.cleaned_data)
         prop.user = self.request.user
         prop.save()
