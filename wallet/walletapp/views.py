@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
@@ -118,8 +118,8 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
                 "amount": prop.value/100.0,
                 "currency": "EUR",
             },
-            "url_confirm": reverse_lazy('success_proposition'),
-            "url_cancel": reverse_lazy('failed_proposition')
+            "url_confirm": reverse('success_proposition'),
+            "url_cancel": reverse('failed_proposition')
         }
         url = "https://wallet.codebits.pt/api/v2/checkout"
         headers = {"Authorization": "WalletPT "+settings.WALLET_MER_ID}
