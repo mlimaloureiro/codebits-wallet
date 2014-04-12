@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Proposition
 
 
 class UserForm(forms.Form):
@@ -17,3 +18,9 @@ class UserForm(forms.Form):
     def clean(self):
         cleaned_data = super(UserForm, self).clean()
         return cleaned_data
+
+
+class PropositionForm(forms.ModelForm):
+    class Meta:
+        model = Proposition
+        fields = ['repository', 'issue_id', 'value', 'expires']

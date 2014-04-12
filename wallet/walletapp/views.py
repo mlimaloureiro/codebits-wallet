@@ -17,7 +17,7 @@ import datetime
 
 from django.contrib import messages
 
-from .forms import UserForm
+from .forms import UserForm, PropositionForm
 # Create your views here.
 
 
@@ -101,6 +101,7 @@ class FavouritesView(JSONResponseMixin,View):
 
 class CreatePropositionView(LoginRequiredMixin, CreateView):
     model = Proposition
+    form_class = PropositionForm
 
     def form_valid(form):
         prop = Proposition(**form.cleaned_data)
