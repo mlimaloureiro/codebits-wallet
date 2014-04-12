@@ -112,8 +112,8 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
         data = {
             "payment": {
                 "client": {
-                   "name": " ".join([user.first_name, user.last_name]),
-                   "email": user.email,
+                    "name": " ".join([user.first_name, user.last_name]),
+                    "email": user.email,
                     "address": {
                          "country": "pt",
                          "address": "some street",
@@ -133,8 +133,8 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
             "Authorization": "WalletPT "+settings.WALLET_MER_ID,
             'content-type': 'application/json'
         }
-        JSONNN = json.dumps(data)
-        response = requests.post(url, data=JSONNN, headers=headers)
+        payload = json.dumps(data)
+        response = requests.post(url, data=payload, headers=headers)
         return HttpResponseRedirect(response.json()["url_redirect"])
 
 
