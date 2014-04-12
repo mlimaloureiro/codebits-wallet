@@ -36,7 +36,7 @@ def create_hook(repository='https://api.github.com/repos/andreesg/goncalves.me',
         'active': True,
         'config': {
             'url': 'http://codingbooster.herokuapp.com/hooks/',
-            'content_type': 'json',
+            'content_type': 'json'
         },
         'events': [
             'push',
