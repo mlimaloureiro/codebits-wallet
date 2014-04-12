@@ -127,7 +127,7 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
             'content-type': 'application/json'
         }
         response = requests.post(url, data=json.dumps(data), headers=headers)
-        return HttpResponseRedirect(json.loads(response.text)["url_redirect"])
+        return HttpResponseRedirect(response.json()["url_redirect"])
 
 
 class FailedPropositionView(LoginRequiredMixin, RedirectView):
