@@ -111,7 +111,7 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
         data = {
             "payment": {
                 "client": {
-                   "name": " ".join([user.first_name, user.last_name])
+                   "name": " ".join([user.first_name, user.last_name]),
                    "email": user.email,
                 },
                 "amount": prop.value/100.0,
