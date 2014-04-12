@@ -121,8 +121,11 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
             "url_confirm": reverse('success_proposition'),
             "url_cancel": reverse('failed_proposition')
         }
-        url = "https://services.wallet.pt/api/v2/checkout"
-        headers = {"Authorization": "WalletPT "+settings.WALLET_MER_ID}
+        url = "https://services.wallet.codebits.eu/api/v2/checkout"
+        headers = {
+            "Authorization": "WalletPT "+settings.WALLET_MER_ID,
+            'content-type': 'application/json'
+        }
         response = requests.post(url, data=json.dumps(data), headers=headers)
         return HttpResponseRedirect(json.loads(response.text)["url_redirect"])
 
