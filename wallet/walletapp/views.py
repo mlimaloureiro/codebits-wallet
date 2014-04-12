@@ -15,6 +15,8 @@ import simplejson as json
 import requests
 import datetime
 
+from django.contrib import messages
+
 from .forms import UserForm
 # Create your views here.
 
@@ -100,14 +102,39 @@ class FavouritesView(JSONResponseMixin,View):
 class CreatePropositionView(LoginRequiredMixin, CreateView):
     model = Proposition
 
+    def form_valid(form):
+        prop = Proposition(**form.cleaned_data)
+        prop.user = self.request.user
+        prop.save()
+        user = request.user
+
+        data = {
+            "payment": {
+                "client": {
+                   "name": " ".join([user.first_name, user.last_name])
+                   "email": user.email,
+                },
+                "amount": prop.value/100.0,
+                "currency": "EUR",
+            },
+            "url_confirm": reverse_lazy('success_proposition'),
+            "url_cancel": reverse_lazy('failed_proposition')
+        }
+        url = "https://wallet.codebits.pt/api/v2/checkout"
+        headers = {"Authorization": "WalletPT "+settings.WALLET_MER_ID}
+        response = requests.post(url, params=json.dumbs(data), headers=headers)
+        return HttpResponseRedirect(response.json()["url_redirect"])
+
 
 class FailedPropositionView(LoginRequiredMixin, RedirectView):
 
     def get(request, *args, **kwargs):
-        pass
+        messages.error(request, "Unable to transfer funds")
+        return HttpResponseRedirect(reverse_lazy('dash_index'))
 
 
 class SuccessPropositionView(LoginRequiredMixin, RedirectView):
 
     def get(request, *args, **kwargs):
-        pass
+        messages.success(request, "Proposition created with success")
+        return HttpResponseRedirect(reverse_lazy('dash_index'))

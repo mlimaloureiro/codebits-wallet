@@ -6,6 +6,9 @@ urlpatterns = patterns('walletapp.views',
     url(r'^repository/(?P<ident>\d+)$', 'repository', name="issues"),
     url(r'^my_repositories/$', 'myRepositories', name="my_repositories"),
     url(r'^repositories/$', RepositoriesView.as_view(), name="repositories"),
+    url(r'^proposition/new/$', CreatePropositionView.as_view(), name='new_proposition'),
+    url(r'^proposition/success/$', SuccessPropositionView.as_view(), name='success_proposition'),
+    url(r'^proposition/success/$', FailedPropositionView.as_view(), name='failed_proposition'),
 )
 
 urlpatterns += patterns(
