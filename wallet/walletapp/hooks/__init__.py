@@ -65,24 +65,56 @@ def receive_hook(request):
     try:
         event = request.META['HTTP_X_GITHUB_EVENT']
         if event is "pull_request":
+            print "pull_request received"
             handle_pull_request(request.body)
     except Exception as e:
         return HttpResponse(json.dumps({"success":False, "error_msg": "Github header not found."}))
     else:
         return HttpResponse(json.dumps({"success":True}))
 
+def create_user_payments(issue_url, user):
+    propositions = Proposition.objects.filter(issue_id=issue_url)
+    if len(propositions) > 0:
+        total_amount = 0
+        for proposition in propositions:
+            total_amount += proposition.value
+            proposition.status = DONE
+            proposition.save()
+
+        email = get_user_email(user)
+        print "user email: "+email
+        return True
+    else:
+        return False
+
+def get_user_email(login):
+    r = requests.get("https://api.github.com/users/"+login)
+    response = r.json()
+    email = response["email"]
+
+    return email
+
 # Handle pull request
 def handle_pull_request(raw_data):
+    print "handle pull request"
+
     data = json.loads(raw_data)
     pull_request = data["pull_request"]
-    user = data["head"]["user"]["url"]
+    user = data["head"]["user"]["login"]
+    print "get user url: "+user
 
     # Check if merged and closed
     # Check if issue is related to some user
     if data['action'] == "closed":
+        print "pull_request action: closed."
         if pull_request['merged'] == True:
-            check_user_payments(user, pull_request['issue_url'])
+            if create_user_payments(pull_request['issue_url'], user):
+                print "created payment"
+                return True
+    else:
+        print "pull_request action: "+data["action"]
+        return False
 
     # Send to wallet
-    return {'success':True }
+    return False
 
