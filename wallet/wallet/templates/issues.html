@@ -57,34 +57,6 @@
           </div>
       </div>
 </script>
-
-<script id="issue-form" type="text/html">
-<form class="ink-form" >
-  <div class="column-group gutters">
-      <div class="control-group all-33">
-          <label for="name">Amount</label>
-          <div class="control">
-              <input type="text" name="amount">
-          </div>
-      </div>
-      <div style="display:none">
-        <input type="text" name="amount">
-      </div>
-      <div class="control-group all-33">
-          <label for="phone">Expiration date</label>
-          <div class="control">
-              <input type="text" name="expiration_date">
-          </div>
-      </div>
-      <div class="control-group all-33">
-          <div class="control">
-              <input type="submit" value="Make offer" class="ink-button">
-              <input class="ink-button" onclick="$(this).parent().parent().parent().hide();return false;"> Cancel </button>
-          </div>
-      </div>
-  </div>
-</form>
-</script>
 <script>
 $(document).ready(function() {
 	wallet.init();
