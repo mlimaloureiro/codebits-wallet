@@ -10,6 +10,7 @@ from braces.views import JSONResponseMixin
 from walletapp.models import *
 import simplejson as json
 from django.core.serializers import serialize
+from django.views.decorators.csrf import csrf_exempt
 import requests
 import datetime
 
@@ -60,7 +61,9 @@ def create_hook(repository='https://api.github.com/repos/andreesg/goncalves.me',
         hook_id = response["id"]
         return {'hook_id':hook_id, 'hook_url' : response['url']}
 
+
 # Handle Github Webhooks
+@csrf_exempt
 def receive_hook(request):
     try:
         event = request.META['HTTP_X_GITHUB_EVENT']
