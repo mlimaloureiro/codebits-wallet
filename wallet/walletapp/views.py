@@ -6,7 +6,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
-from django.views.generic import View, DetailView, UpdateView, CreateView
+from django.views.generic import View, DetailView, UpdateView, CreateView, RedirectView
 from braces.views import JSONResponseMixin, JsonRequestResponseMixin, LoginRequiredMixin
 from walletapp.models import *
 from django.core.serializers import serialize
@@ -87,8 +87,6 @@ class RepositoriesView(JsonRequestResponseMixin, View):
             return HttpResponse(json.dumps({"success":False}))
 
 
-
-
 class FavouritesView(JSONResponseMixin,View):
     model = Favourites
     json_dump_kwargs = {u"indent":2}
@@ -101,3 +99,15 @@ class FavouritesView(JSONResponseMixin,View):
 
 class CreatePropositionView(LoginRequiredMixin, CreateView):
     model = Proposition
+
+
+class FailedPropositionView(LoginRequiredMixin, RedirectView):
+
+    def get(request, *args, **kwargs):
+        pass
+
+
+class SuccessPropositionView(LoginRequiredMixin, RedirectView):
+
+    def get(request, *args, **kwargs):
+        pass
