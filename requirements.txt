@@ -16,6 +16,7 @@ psycopg2==2.5.2
 pystache==0.5.3
 python-openid==2.2.5
 requests==2.2.1
+selenium==2.41.0
 simplejson==3.4.0
 six==1.6.1
 sqlparse==0.1.11

@@ -121,6 +121,7 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
                          "postalcode": "1100-000"
                     }
                 },
+                "refundable": True,
                 "amount": prop.value/100.0,
                 "currency": "EUR",
                 "items": [],
@@ -156,6 +157,6 @@ class SuccessPropositionView(LoginRequiredMixin, RedirectView):
     def get(self, request, *args, **kwargs):
         op_id = request.GET.get("checkoutid")
         prop = Proposition.objects.get(operation_id=op_id)
-        prop.status = DONE
+        prop.status = ACTIVE
         prop.save()
         return HttpResponseRedirect(reverse_lazy('dash_index'))
