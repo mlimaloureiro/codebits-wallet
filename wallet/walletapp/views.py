@@ -114,9 +114,16 @@ class CreatePropositionView(LoginRequiredMixin, CreateView):
                 "client": {
                    "name": " ".join([user.first_name, user.last_name]),
                    "email": user.email,
+                    "address": {
+                         "country": "pt",
+                         "address": "some street",
+                         "city": "lisboa",
+                         "postalcode": "1100-000"
+                    }
                 },
                 "amount": prop.value/100.0,
                 "currency": "EUR",
+                "items": [],
             },
             "url_confirm": reverse('success_proposition'),
             "url_cancel": reverse('failed_proposition')
