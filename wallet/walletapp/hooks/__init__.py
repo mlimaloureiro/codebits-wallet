@@ -67,7 +67,7 @@ def create_hook(repository='https://api.github.com/repos/andreesg/goncalves.me',
 def receive_hook(request):
     try:
         event = request.META['HTTP_X_GITHUB_EVENT']
-        if event is "pull_request":
+        if event == "pull_request":
             print "pull_request received"
             handle_pull_request(request.body)
     except Exception as e:
